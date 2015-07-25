@@ -1,0 +1,1004 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"login",
+				"login_url"
+			],
+			[
+				"get",
+				"getDecrypted"
+			],
+			[
+				"add",
+				"addAccForm"
+			],
+			[
+				"blo",
+				"blockId"
+			],
+			[
+				"encry",
+				"encryptedPass"
+			],
+			[
+				"decr",
+				"decryptedwrong"
+			],
+			[
+				"vlai",
+				"validacion"
+			],
+			[
+				"val",
+				"value"
+			],
+			[
+				"pidia",
+				"pidia_hasta"
+			],
+			[
+				"idia",
+				"idia_hasta"
+			],
+			[
+				"idi",
+				"idia_hasta"
+			],
+			[
+				"disa",
+				"dias_sel_cont"
+			],
+			[
+				"defaul",
+				"default_cont"
+			],
+			[
+				"data",
+				"data-toggle"
+			],
+			[
+				"estado",
+				"estado_tipo"
+			],
+			[
+				"alumno",
+				"alumno_id"
+			],
+			[
+				"err_practicas",
+				"err_practicas_noexiste"
+			],
+			[
+				"insti",
+				"institucion"
+			],
+			[
+				"timest",
+				"timestamp_to_date"
+			],
+			[
+				"constr",
+				"construct	CI - Class Constructor"
+			],
+			[
+				"constru",
+				"__construct"
+			],
+			[
+				"toggle",
+				"toggle_checks"
+			],
+			[
+				"ajax",
+				"ajaxUrl"
+			],
+			[
+				"has",
+				"hasOwnProperty"
+			],
+			[
+				"actua",
+				"actual_dir"
+			],
+			[
+				"file",
+				"filepath"
+			],
+			[
+				"sear",
+				"search_entry"
+			],
+			[
+				"ins",
+				"institucion"
+			],
+			[
+				"sess",
+				"session_userdata	CI - Session - Retrieving Session Data"
+			],
+			[
+				"defi",
+				"defined"
+			],
+			[
+				"var",
+				"var_dump"
+			],
+			[
+				"decanu",
+				"decanouid"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "index.html",
+			"settings":
+			{
+				"buffer_size": 2109,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "js/main.js",
+			"settings":
+			{
+				"buffer_size": 5273,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "js/banks.js",
+			"settings":
+			{
+				"buffer_size": 1001,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "cookies.json",
+			"settings":
+			{
+				"buffer_size": 2439,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Users/usuario/Dropbox/Documentos/PythonScripts/banco.py",
+			"settings":
+			{
+				"buffer_size": 5770,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "js/utils.js",
+			"settings":
+			{
+				"buffer_size": 1703,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "notif_test.html",
+			"settings":
+			{
+				"buffer_size": 1990,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+		[
+			[
+				[
+					"Packages/Python/Python.sublime-build",
+					""
+				],
+				[
+					"Packages/Python/Python.sublime-build",
+					"Syntax Check"
+				]
+			],
+			[
+				"Packages/Python/Python.sublime-build",
+				""
+			]
+		]
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 196.0,
+		"last_filter": "javas",
+		"selected_items":
+		[
+			[
+				"javas",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"js",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"css",
+				"Set Syntax: CSS"
+			],
+			[
+				"html",
+				"Set Syntax: HTML"
+			],
+			[
+				"spaces",
+				"Indentation: Convert to Spaces"
+			],
+			[
+				"tabs",
+				"Indentation: Convert to Tabs"
+			],
+			[
+				"trail",
+				"Trailing Spaces: Delete Trailing Spaces"
+			],
+			[
+				"load vi",
+				"Snippet: CI - Load View"
+			],
+			[
+				"alert",
+				"Snippet: bs3-alert-info"
+			],
+			[
+				"trai",
+				"Trailing Spaces: Delete Trailing Spaces"
+			],
+			[
+				"chec",
+				"Snippet: bs3-input-checkbox"
+			],
+			[
+				"plain",
+				"Set Syntax: Plain Text"
+			],
+			[
+				"json",
+				"Set Syntax: JSON"
+			],
+			[
+				"pack",
+				"Preferences: Browse Packages"
+			],
+			[
+				"loadm",
+				"Snippet: CI - Load Model"
+			],
+			[
+				"PHP",
+				"Set Syntax: PHP"
+			],
+			[
+				"model",
+				"Snippet: CI - Base Model"
+			],
+			[
+				"form",
+				"Snippet: bs3-form"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"gly",
+				"Snippet: bs3-icon-glyphicon"
+			],
+			[
+				"glyp",
+				"Snippet: bs3-icon-glyphicon"
+			],
+			[
+				"dele",
+				"Trailing Spaces: Delete Trailing Spaces"
+			],
+			[
+				"minif",
+				"Minify::Minify File"
+			],
+			[
+				"reind",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"librar",
+				"Snippet: CI - Load Library"
+			],
+			[
+				"class",
+				"Snippet: CI - Fetch Class"
+			],
+			[
+				"controller",
+				"Snippet: CI - Base Controller"
+			],
+			[
+				"glyph",
+				"Snippet: bs3-glyphicon"
+			],
+			[
+				"remo",
+				"Package Control: Remove Package"
+			],
+			[
+				"button",
+				"Snippet: bs3-button-primary"
+			],
+			[
+				"table",
+				"Snippet: bs3-table-responsive"
+			],
+			[
+				"pyth",
+				"Set Syntax: Python"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"bs3-pan",
+				"Snippet: bs3-panel"
+			],
+			[
+				"php",
+				"Set Syntax: PHP"
+			],
+			[
+				"check",
+				"Snippet: bs3-input-checkbox"
+			],
+			[
+				"well",
+				"Snippet: bs3-well-sm"
+			],
+			[
+				"bs3 form",
+				"Snippet: bs3-form"
+			],
+			[
+				"bs3-glyp",
+				"Snippet: bs3-glyphicon"
+			],
+			[
+				"bs3",
+				"Snippet: bs3-alert"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 424.0
+	},
+	"console":
+	{
+		"height": 126.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = 'eb2297e1a458f27d836c04bb0cbaf282' + 'd0e7a3098092775ccb37ca9d6b2e4b7d'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/C/Users/usuario/Documents/bancos-manager"
+	],
+	"file_history":
+	[
+		"/C/Users/usuario/Documents/Development/PHPMailer-5.2.10/class.phpmailer.php",
+		"/C/Users/usuario/Documents/Development/PHPMailer-5.2.10/PHPMailerAutoload.php",
+		"/C/Users/usuario/Documents/Development/PHPMailer-5.2.10/class.smtp.php",
+		"/C/Users/usuario/Documents/ades-nw/js/utils.js",
+		"/C/Users/usuario/Documents/bancos-manager/cookies.json",
+		"/C/Users/usuario/Documents/ades-nw/js/hosts/animeflv.js",
+		"/C/Users/usuario/Documents/bancos-manager/package.json",
+		"/C/Users/usuario/Dropbox/Documentos/PythonScripts/banco.py",
+		"/C/Users/usuario/Dropbox/Documentos/PythonScripts/bancochile.py",
+		"/C/Users/usuario/Documents/bancos-manager/main.css",
+		"/C/Users/usuario/Documents/ades-nw/js/hosts.js",
+		"/C/Users/usuario/AppData/Roaming/Sublime Text 3/Packages/User/nwjs.sublime-build",
+		"/C/Users/usuario/Documents/bancos-manager/main.js",
+		"/C/Users/usuario/Documents/bancos-manager/utils.js",
+		"/C/Users/usuario/Documents/bancos-manager/db.js",
+		"/C/Users/usuario/Documents/ades-nw/js/main.js",
+		"/C/Users/usuario/Documents/ades-nw/js/ades.js",
+		"/C/Users/usuario/Documents/ades-nw/package.json",
+		"/C/xampp/htdocs/practicas/res/js/stuff.js",
+		"/C/xampp/htdocs/practicas/gpufro/config/constants.php",
+		"/C/xampp/htdocs/practicas/gpufro/config/config.php",
+		"/C/xampp/htdocs/practicas/gpufro/views/panel/practicas/inscribir.php",
+		"/C/xampp/htdocs/practicas/gpufro/controllers/Practicas.php",
+		"/C/xampp/htdocs/practicas/gpufro/models/Practica.php",
+		"/C/xampp/htdocs/practicas/gpufro.sql",
+		"/C/xampp/htdocs/practicas/gpufro/config/permissions.php",
+		"/C/xampp/htdocs/practicas/gpufro/config/menu_disposition.php",
+		"/C/xampp/htdocs/practicas/gpufro/views/panel/documentos.php",
+		"/C/xampp/htdocs/practicas/gpufro/controllers/Admin.php",
+		"/C/xampp/htdocs/practicas/gpufro/views/panel/config.php",
+		"/C/xampp/htdocs/practicas/gpufro/controllers/Documentos.php",
+		"/C/xampp/htdocs/practicas/gpufro/core/MY_Model.php",
+		"/C/xampp/htdocs/practicas/gpufro/language/spanish/practicas_lang.php",
+		"/C/xampp/htdocs/practicas/gpufro/language/spanish/forms_lang.php",
+		"/C/xampp/htdocs/practicas/gpufro/language/spanish/email_lang.php",
+		"/C/xampp/htdocs/practicas/.gitignore",
+		"/C/xampp/htdocs/practicas/gpufro/config/recaptcha.php",
+		"/C/xampp/htdocs/practicas/nginx.conf",
+		"/C/xampp/htdocs/practicas/gpufro/libraries/Md6.php",
+		"/C/xampp/htdocs/practicas/index.php",
+		"/C/xampp/htdocs/practicas/gpufro/views/pages/tests.php",
+		"/C/xampp/htdocs/practicas/gpufro/.htaccess",
+		"/C/xampp/htdocs/practicas/gpufro/config/database.php",
+		"/C/xampp/htdocs/practicas/gpufro/config/email.php",
+		"/C/xampp/htdocs/practicas/gpufro/models/Grupo.php",
+		"/C/xampp/htdocs/index.html",
+		"/C/Users/usuario/AppData/Local/Temp/fz3temp-1/database.php",
+		"/C/xampp/htdocs/practicas/gpufro/libraries/Dconfig.php",
+		"/C/Users/usuario/AppData/Local/Temp/fz3temp-1/config.php",
+		"/C/Users/usuario/AppData/Local/Temp/fz3temp-1/Dconfig.php",
+		"/C/xampp/htdocs/practicas/gpufro/helpers/util_helper.php",
+		"/C/xampp/htdocs/practicas/gpufro/config/autoload.php",
+		"/C/xampp/htdocs/practicas/gpufro/models/Alumno.php",
+		"/C/xampp/htdocs/practicas/gpufro/models/Documento.php",
+		"/C/xampp/htdocs/practicas/gpufro/models/Persona.php",
+		"/C/xampp/htdocs/practicas/gpufro/config/gpufro.php",
+		"/C/xampp/htdocs/practicas/gpufro/controllers/Busqueda.php",
+		"/C/xampp/htdocs/practicas/gpufro/controllers/Panel.php",
+		"/C/xampp/htdocs/practicas/gpufro/libraries/Util.php",
+		"/C/xampp/htdocs/practicas/gpufro/models/Oferta.php",
+		"/C/xampp/htdocs/practicas/gpufro/models/Facultad.php",
+		"/C/xampp/htdocs/practicas/gpufro/controllers/Ajax.php",
+		"/C/xampp/htdocs/practicas/gpufro/models/Ramo.php",
+		"/C/xampp/htdocs/practicas/gpufro/logs/log-2015-06-26.php",
+		"/C/xampp/htdocs/practicas/gpufro/models/Carrera.php",
+		"/C/xampp/htdocs/practicas/gpufro/models/Institucion.php",
+		"/C/xampp/htdocs/practicas/gpufro/views/panel/practicas/practicas_alumnos.php",
+		"/C/xampp/htdocs/practicas/gpufro/views/ajax/ver/persona.php",
+		"/C/xampp/htdocs/practicas/gpufro/views/panel/practicas/practicas.php",
+		"/C/xampp/htdocs/practicas/gpufro/views/panel/practicas/postular.php",
+		"/C/xampp/htdocs/practicas/gpufro/controllers/Media.php",
+		"/C/xampp/htdocs/practicas/gpufro/views/panel/agregar/oferta.php",
+		"/C/xampp/htdocs/practicas/gpufro/views/panel/editar/institucion.php",
+		"/media/respaldo/WebRoot/practicas/gpufro/models/Alumno.php",
+		"/media/respaldo/WebRoot/practicas/gpufro/views/panel/agregar/oferta.php",
+		"/media/respaldo/WebRoot/practicas/gpufro/controllers/Json.php",
+		"/media/respaldo/WebRoot/practicas/gpufro/controllers/Media.php",
+		"/media/respaldo/WebRoot/practicas/res/css/typeahead.css",
+		"/media/respaldo/WebRoot/practicas/res/js/typeahead.bundle.min.js",
+		"/media/respaldo/WebRoot/practicas/res/css/gpufro-theme.css",
+		"/media/respaldo/WebRoot/practicas/res/css/gpufro-theme.min.css",
+		"/media/respaldo/WebRoot/practicas/gpufro/models/Practica.php",
+		"/media/respaldo/WebRoot/practicas/gpufro/config/permissions.php",
+		"/media/respaldo/WebRoot/practicas/gpufro/models/Institucion.php",
+		"/media/respaldo/WebRoot/practicas/gpufro/views/panel/practicas/practicas.php",
+		"/media/respaldo/WebRoot/practicas/res/js/handlebars-v3.0.2.min.js",
+		"/media/respaldo/WebRoot/practicas/README.md",
+		"/media/respaldo/WebRoot/practicas/res/js/handlebars-v3.0.1.js",
+		"/media/respaldo/WebRoot/practicas/gpufro/config/constants.php",
+		"/media/respaldo/WebRoot/practicas/gpufro/controllers/Practicas.php",
+		"/media/respaldo/WebRoot/practicas/gpufro/controllers/Ajax.php",
+		"/media/respaldo/WebRoot/practicas/gpufro/helpers/date_helper.php",
+		"/media/respaldo/WebRoot/practicas/gpufro/config/routes.php",
+		"/media/respaldo/WebRoot/practicas/gpufro/models/Oferta.php",
+		"/media/respaldo/WebRoot/practicas/gpufro/views/templates/cartapres.txt",
+		"/media/respaldo/WebRoot/practicas/gpufro/libraries/Pdf.php",
+		"/media/respaldo/WebRoot/practicas/gpufro/helpers/util_helper.php",
+		"/media/respaldo/WebRoot/practicas/gpufro/core/MY_Model.php",
+		"/media/respaldo/WebRoot/practicas/gpufro/controllers/Tests.php",
+		"/media/respaldo/WebRoot/practicas/gpufro/third_party/tcpdf/index.html",
+		"/media/respaldo/WebRoot/practicas/gpufro/third_party/tcpdf/include/barcodes/index.html",
+		"/media/respaldo/WebRoot/practicas/gpufro/third_party/tcpdf/include/index.html",
+		"/media/respaldo/WebRoot/practicas/gpufro/third_party/tcpdf/images/index.html",
+		"/media/respaldo/WebRoot/practicas/gpufro/third_party/tcpdf/cache/index.html",
+		"/media/respaldo/WebRoot/practicas/gpufro/third_party/tcpdf/fonts/index.html",
+		"/media/respaldo/WebRoot/practicas/.gitignore",
+		"/media/respaldo/WebRoot/practicas/index.php",
+		"/media/respaldo/WebRoot/practicas/res/js/stuff.js",
+		"/media/respaldo/WebRoot/practicas/gpufro/views/panel/practicas/agregar_oferta.php",
+		"/media/respaldo/WebRoot/practicas/gpufro/controllers/admin.php",
+		"/home/makzk/Documentos/CodeIgniter-3.0.0/index.php",
+		"/media/respaldo/WebRoot/practicas/gpufro/logs/log-2015-04-15.php",
+		"/home/makzk/Documentos/CodeIgniter-3.0.0/application/config/routes.php",
+		"/home/makzk/Documentos/CodeIgniter-3.0.0/application/controllers/Welcome.php",
+		"/media/respaldo/WebRoot/practicas/gpufro/views/panel/templates/header.php",
+		"/media/respaldo/WebRoot/practicas/gpufro/views/panel/editar/facultad.php",
+		"/media/respaldo/WebRoot/practicas/gpufro/views/panel/editar/persona.php",
+		"/media/respaldo/WebRoot/practicas/gpufro/views/panel/editar/carrera.php",
+		"/media/respaldo/WebRoot/practicas/gpufro/views/panel/config.php",
+		"/media/respaldo/WebRoot/practicas/gpufro/libraries/Util.php",
+		"/media/respaldo/WebRoot/practicas/gpufro/language/spanish/forms_lang.php",
+		"/media/respaldo/WebRoot/practicas/gpufro/language/spanish/admin_lang.php",
+		"/media/respaldo/WebRoot/practicas/gpufro/views/panel/permisos.php",
+		"/media/respaldo/WebRoot/practicas/gpufro/views/pages/tests.php",
+		"/media/respaldo/WebRoot/practicas/gpufro/views/panel/editar/institucion.php",
+		"/media/respaldo/WebRoot/practicas/gpufro/views/templates/header.php",
+		"/media/respaldo/WebRoot/practicas/gpufro/views/panel/buscar/instituciones.php",
+		"/media/respaldo/WebRoot/practicas/gpufro/logs/log-2015-04-13.php"
+	],
+	"find":
+	{
+		"height": 34.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+			"C:\\xampp\\htdocs\\practicas\\gpufro",
+			"/media/respaldo/WebRoot/practicas",
+			"/media/respaldo/WebRoot/practicas/system",
+			"/media/respaldo/WebRoot/practicas/system/gpufro",
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": true,
+		"find_history":
+		[
+			"data",
+			"options",
+			"obj",
+			"T",
+			"initAccInterface",
+			"p",
+			"input",
+			"showBlock",
+			"DES",
+			"Cuentas",
+			"div",
+			"decrWrong",
+			"decryptedwrong",
+			"texttest",
+			"hinicial",
+			"CI",
+			"div",
+			"config(\"gpufro",
+			"config('gpufro",
+			"grupo_alumnos",
+			"table_name(",
+			"grupos(",
+			"table_name(",
+			"table_name",
+			"facultad",
+			"table_name",
+			"<strong>Mensaje: </strong>",
+			"local",
+			"carrera",
+			"practicas",
+			"telefonos",
+			");\n",
+			"div",
+			"transparent",
+			"query",
+			"bind",
+			"ul",
+			"practica",
+			"options",
+			"this",
+			"pdf",
+			"blue",
+			"contrase",
+			"pass",
+			"passw",
+			"err",
+			"e",
+			"this",
+			"selected",
+			"empresas",
+			">\n",
+			"h3",
+			"h2",
+			"h1",
+			"media",
+			"media/js",
+			"system/gpufro",
+			"system/media",
+			"string",
+			"self",
+			"pass",
+			"info",
+			"\n		self.listbox = Listbox(self.master)\n		self.listbox.grid(row=1)\n		self.listbox.insert(END, \"Results will appear here\")",
+			"string",
+			"master",
+			")\n",
+			"master",
+			"empresa",
+			"<?php defined('BASEPATH') OR exit('No direct script access allowed.'); ?>\n		<div class=\"container\">\n			<div class=\"panel panel-default\">\n				<div class=\"panel-heading\">\n					<h3 class=\"panel-title\">\n						Inscribir una práctica\n					</h3>\n				</div>\n				<div class=\"panel-body\">\n					<form action=\"\" method=\"POST\" class=\"form-horizontal\" role=\"form\">\n						<div class=\"form-group\">\n							<label for=\"n_practica\" class=\"col-sm-3 control-label\">Tipo práctica</label>\n							<div class=\"col-sm-8\">\n								<select name=\"n_practica\" id=\"n_practica\" class=\"form-control\" required=\"\">\n									<option value=\"\" selected=\"\">-- Seleccione una opción --</option>\n								<?php foreach($ramos->result() as $ramo) { ?>\n									<option value=\"<?php echo $ramo->ramo_id ?>\"><?php echo $ramo->ramo_nombre ?></option>\n								<?php } ?>\n								</select>\n							</div>\n						</div>\n						<div class=\"form-group\">\n							<label for=\"input\" class=\"col-sm-3 control-label\">Nivel completado</label>\n							<div class=\"col-sm-8\">\n								<input type=\"number\" id=\"input\" name=\"lv_aprobado\" class=\"form-control\" value=\"8\" min=\"1\" max=\"12\" step=\"1\" required=\"\">\n							</div>\n						</div>\n						<div class=\"form-group\">\n							<label class=\"col-sm-3 control-label\">Fechas inicio-término: </label>\n							<div class=\"col-sm-8\">\n								<div class=\"col-sm-6\">\n									<input type=\"date\" id=\"date_init\" name=\"date_init\" class=\"form-control\" placeholder=\"Fecha de inicio\" required onchange=\"min_date()\">\n								</div>\n								<div class=\"col-sm-6\">\n									<input type=\"date\" id=\"date_end\" name=\"date_end\" class=\"form-control\" placeholder=\"Fecha de término\" required=\"\">\n								</div>\n							</div>\n						</div>\n						<div class=\"form-group\">\n							<label for=\"horarios\" class=\"col-sm-3 control-label\">Horarios</label>\n							<div class=\"col-sm-8\">\n								<input type=\"text\" class=\"form-control\" id=\"horarios\" name=\"horarios\" placeholder=\"Horarios\" required=\"\">\n							</div>\n						</div>\n						<div class=\"form-group\">\n							<label for=\"empresa\" class=\"col-sm-3 control-label\">Nombre de Empresa o Institución</label>\n							<div class=\"col-sm-8\">\n								<input type=\"text\" class=\"form-control\" id=\"empresa\" name=\"empresa\" placeholder=\"Nombre de la empresa\" required=\"\">\n							</div>\n						</div>\n						<div class=\"form-group\">\n							<label for=\"direccion\" class=\"col-sm-3 control-label\">Dirección</label>\n							<div class=\"col-sm-8\">\n								<input type=\"text\" class=\"form-control\" id=\"direccion\" name=\"direccion\" placeholder=\"Dirección completa de la empresa\" required=\"\">\n							</div>\n						</div>\n						<div class=\"form-group\">\n							<label for=\"telefonos\" class=\"col-sm-3 control-label\">Teléfonos</label>\n							<div class=\"col-sm-8\">\n								<input type=\"tel\" class=\"form-control\" id=\"telefonos\" name=\"telefonos\" placeholder=\"Teléfonos de contacto\" required=\"\">\n							</div>\n						</div>\n						<div class=\"form-group\">\n							<label for=\"supervisor_nombres\" class=\"col-sm-3 control-label\">Nombre(s) Supervisor</label>\n							<div class=\"col-sm-8\">\n								<input type=\"text\" class=\"form-control\" id=\"supervisor_nombres\" name=\"supervisor_nombres\" placeholder=\"Nombres del supervisor\" required=\"\">\n							</div>\n						</div>\n						<div class=\"form-group\">\n							<label for=\"supervisor_apellidos\" class=\"col-sm-3 control-label\">Apellido(s) Supervisor</label>\n							<div class=\"col-sm-8\">\n								<input type=\"text\" class=\"form-control\" id=\"supervisor_apellidos\" name=\"supervisor_apellidos\" placeholder=\"Apellidos del supervisor\" required=\"\">\n							</div>\n						</div>\n						<div class=\"form-group\">\n							<label for=\"cargo_supervisor\" class=\"col-sm-3 control-label\">Cargo del supervisor</label>\n							<div class=\"col-sm-8\">\n								<input type=\"text\" class=\"form-control\" id=\"cargo_supervisor\" name=\"cargo_supervisor\" placeholder=\"Cargo del supervisor\" required>\n							</div>\n						</div>\n						<div class=\"form-group\">\n							<label for=\"email\" class=\"col-sm-3 control-label\">Email de contacto</label>\n							<div class=\"col-sm-8\">\n								<input type=\"text\" class=\"form-control\" id=\"email\" name=\"email\" placeholder=\"Email de contacto con supervisor\" required>\n							</div>\n						</div>\n						<div class=\"form-group\">\n							<label for=\"carta\" class=\"col-sm-3 control-label\">Carta de aceptación</label>\n							<div class=\"col-sm-8\">\n								<input id=\"carta\" type=\"file\" class=\"file\" name=\"carta\" />\n							</div>\n						</div>\n						<div class=\"form-group\">\n							<label for=\"plan\" class=\"col-sm-3 control-label\">Plan de actividades</label>\n							<div class=\"col-sm-8\">\n								<input id=\"plan\" type=\"file\" class=\"file\" name=\"plan\" />\n							</div>\n						</div>\n						<div class=\"form-group\">\n							<div class=\"well col-sm-10 col-sm-offset-1\">\n							<strong>Notas:</strong>\n								<ol>\n									<li>Dejo constancia que todos los antecedentes presentados son fidedignos, por lo que asumo las responsabilidades correspondientes.</li>\n									<li>Esta solicitud deberá ser presentada, por lo menos 3 días antes de iniciar la práctica.</li>\n									<li>Se debe anexar el Programa de Práctica (el cual debe contener plan de actividades, horarios, fechas de inicio y término), debe estar firmada y timbrada por el supervisor.</li>\n									<li>Anexar avance curricular para ratificar antecedentes.</li>\n									<li>Entregar formulario de informe de empresa (sobre sellado), además de informe final de práctica realizado por el alumno, por lo menos 15 días hábiles después de finalizada su práctica.</li>\n								</ol>\n							</div>\n						</div>\n						<div class=\"form-group\">\n							<div class=\"col-sm-8 col-sm-offset-3\">\n								<button type=\"submit\" class=\"btn btn-primary pull-right\">Guardar postulación</button>\n							</div>\n						</div>\n					</form>\n				</div>\n			</div>\n		</div>\n		<script type=\"text/javascript\" src=\"<?php echo $base ?>media/js/fileinput\"></script>\n		<script type=\"text/javascript\">\n			$('#carta, #plan').fileinput({\n				'showPreview': false,\n				'showUpload': false,\n				'allowedFileExtensions': ['pdf', 'doc', 'docx', 'odt']\n			});\n\n			function date_to_form(date) {\n				var y = date.getFullYear();\n				var m = date.getMonth() + 1;\n				var d = date.getDate();\n 				if(m < 10) m = \"0\" + m;\n				if(d < 10) d = \"0\" + d;\n				return y + \"-\" + m + \"-\" + d;\n			}\n			function min_date() {\n				var d = new Date($('#date_init').val());\n				d.setTime(d.getTime() + (1000 * 60 * 60 * 24 * 2));\n				$('#date_end').attr('min', date_to_form(d));\n			}\n			window.addEventListener(\"load\", function() {\n				var date = new Date();\n				date.setTime(date.getTime() + (1000 * 60 * 60 * 24 * 3));\n				var date_init = date_to_form(date);\n				$('#date_init').val(date_init);\n				$('#date_init').attr('min', date_init);\n				min_date();\n			});\n		</script>",
+			"{$ramo[0]}",
+			"					\n",
+			"nombre",
+			"Inscripcion",
+			"@font",
+			"woff",
+			"Alumno",
+			"Usuario",
+			"SitioWeb",
+			"Email",
+			"Direccion",
+			"RUT",
+			"Empresa",
+			"uid",
+			"Titulo",
+			"Usuario",
+			"SessionRemember",
+			"Usuario",
+			"NombreUsuario",
+			"date",
+			"Facultad",
+			"carreraUID",
+			"}\n",
+			"GrupoAlumnos",
+			"UID",
+			"Nombre",
+			"Permisos",
+			"permisos",
+			"Permisos",
+			"Carrera",
+			"Persona",
+			"Grupo",
+			"grupo",
+			"Grupo",
+			"grupo",
+			"Grupo",
+			"grupo",
+			"Grupo",
+			"grupo",
+			"Grupo",
+			"grupo",
+			"Grupo",
+			"grupo",
+			"Grupo",
+			"grupo",
+			"Grupo",
+			"Grupos",
+			"cf",
+			"CarrerasFacultades",
+			"carrea_id",
+			"cfUID",
+			"empresas",
+			"table_name",
+			"var",
+			"protected",
+			"var",
+			"matricula",
+			"Matricula",
+			"matricula"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"templated_view"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 6,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "index.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2109,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								317,
+								317
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "js/main.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5273,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4869,
+								4869
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 2610.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "js/banks.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1001,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								935,
+								935
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Unity3D/UnityJavaScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "cookies.json",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2439,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JSON.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "/C/Users/usuario/Dropbox/Documentos/PythonScripts/banco.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5770,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2180,
+								2190
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 765.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "js/utils.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1703,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1416,
+								1416
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
+						},
+						"translation.x": -0.0,
+						"translation.y": 450.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "notif_test.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1990,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								847,
+								847
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 60.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 136.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "Packages/User/nwjs.sublime-build",
+	"project": "bancos-manager.sublime-project",
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 264.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

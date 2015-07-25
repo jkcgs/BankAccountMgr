@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Bancos Manager</title>
+	<meta charset="utf-8" />
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<script type="text/javascript" src="js/tripledes.js"></script>
+	<script type="text/javascript" src="js/utils.js"></script>
+	<script type="text/javascript" src="js/banks.js"></script>
+	<script type="text/javascript" src="js/main.js"></script>
+</head>
+<body>
+	<h1>Bancos Manager</h1>
+	<form id="store_passwd" class="cont" action="javascript:;" onsubmit="storage.init(); return false" style="display: none">
+		<p>Ingrese contraseña para encriptar datos</p>
+		<p>Guarde la contraseña en un lugar seguro! Si la olvida, borrar todo e iniciar de nuevo.</p>
+		<input id="epwd_new" type="password" placeholder="nueva contraseña" />
+		<input id="epwd_rep" type="password" placeholder="repetir contraseña" />
+		<input type="submit" value="Guardar" />
+	</form>
+	<form id="login" class="cont" action="javascript:;" onsubmit="storage.login(); return false" style="display: none">
+		<p>Ingrese contraseña de datos</p>
+		<input id="login_pass" type="password" placeholder="contraseña" />
+		<input type="submit" value="Ingresar" />
+		<p><a href="javascript:;" onclick="storage.askReset()">Reiniciar datos</a></p>
+	</form>
+	<div id="accounts" class="cont" style="display: none">
+		<p>Cuentas - <a href="javascript:;" onclick="storage.logout()">Cerrar sesión</a></p>
+		<table>
+			<thead><tr><th>Banco</th><th>Usuario</th><th>Acciones</th></tr></thead>
+			<tbody></tbody>
+		</table>
+		<div id="acc_details"></div>
+
+		<form id="add_account" action="javascript:;" onsubmit="ui.addAcc(); return false">
+			<h2>Agregar nueva cuenta</h2>
+			<label>Banco: <select id="new_bank" required=""><option value="">Seleccione...</option></select></label><br />
+			<label>Usuario: <input type="text" id="new_user" required="" /></label><br />
+			<label>Contraseña: <input type="text" id="new_pass" required="" /></label><br />
+			<label>Repetir contraseña: <input type="text" id="new_repp" required="" /></label><br />
+			<input type="submit" value="Agregar" />
+		</form>
+	</div>
+</body>
+</html>
