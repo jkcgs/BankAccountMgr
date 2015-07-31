@@ -16,6 +16,9 @@ BEstado = function(user, pass) {
 	this.logged = false;
 };
 
+BEstado.bname = "BancoEstado";
+BEstado.userIsRUT = true;
+
 BEstado.prefix = "https://bancapersonas.bancoestado.cl/eBankingBech/";
 BEstado.formURL = BEstado.prefix + "login/login.htm",
 BEstado.postURL = BEstado.prefix + "login",
@@ -25,11 +28,15 @@ BEstado.homeURL = BEstado.prefix + "home/home.htm";
 BEstado.prototype.login = function(callback) {
 	console.log("[BE] Retrieving login page...");
 	var that = this;
-	_callback = callback || function(){};
+	var _callback = callback || function(){};
 	this.req(BEstado.formURL, function(err, res, body) {
+		if(err != null) {
+			_callback(err); return;
+		}
+
 		if(body.indexOf("BancoEstado Login") == -1) {
 			console.log("[BE] Wrong page received");
-			callback(false, new Error("Wrong page received"));
+			callback(new Error("Wrong page received"));
 			return;
 		}
 
@@ -43,12 +50,16 @@ BEstado.prototype.login = function(callback) {
 
 		//console.log("[BE] Log-in...");
 		that.req.post(BEstado.postURL, opts, function(err, res, body) {
+			if(err != null) {
+				_callback(err); return;
+			}
+
 			if(res.statusCode == 500) {
 				console.log("[BE] Error 500");
-				_callback(false, new Error("Error 500")); return;
+				_callback(new Error("Error 500")); return;
 			} else if(body.indexOf("Home - BUILD") == -1) {
 				console.log("[BE] Login unsuccessful");
-				_callback(false, null); return;
+				_callback(new Error('Could not login, unknown reason')); return;
 			}
 
 			console.log("[BE] Logged in successful");
@@ -58,28 +69,30 @@ BEstado.prototype.login = function(callback) {
 			that.username = $('.tituloNombre').text().trim();
 
 			that.startKeepAlive();
-			_callback(true, null);
-		}).on('error', function(e){ _callback(false, e); });
-	}).on('error', function(e){ _callback(false, e); });
+			_callback(null, true);
+		});
+	});
 };
 
 BEstado.prototype.getAccounts = function(callback) {
 	if(!this.logged) {
 		console.error("[BE][GA] Not logged!");
-		callback(false, new Error("Not logged"));
+		callback(new Error("Not logged"));
 		return;
 	}
 
-	this.req(BEstado.resumenURL, function(err, res, body) {
+	//console.log("[BE][GA] Loading resume");
+	return this.req(BEstado.resumenURL, function(err, res, body) {
 		if(body.indexOf("<title>Resumen de Productos") == -1) {
 			console.log("[BE][GA] Wrong page received");
-			callback(false, new Error("Wrong page received"));
+			callback(new Error("Wrong page received"));
 			return;
 		}
 
 		var accounts = [];
 		var $1 = cheerio.load(body);
 		var els = $1("#table_1 tbody tr");
+		//console.log('[BE][GA] Accounts found: ' + els.length);
 		for(var i = 0; i < els.length; i++) {
 			var tds = $1("td", els[i]),
 				accType = tds.eq(0).text().trim(),
@@ -89,8 +102,12 @@ BEstado.prototype.getAccounts = function(callback) {
 			accounts.push({accNumber:accNum, accType: accType, accBal: accBal})
 		}
 
-		callback(accounts, null);
+		callback(null, accounts);
 	});
+}
+
+BEstado.prototype.logout = function() {
+	this.jar = request.jar();
 }
 
 ///////////////////////////////////////////////////////////

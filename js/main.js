@@ -1,12 +1,21 @@
 $ = function(s){ return document.querySelector(s); }
+Ractive.DEBUG = !1;
 
-window.addEventListener('load', function() {
-	if(!storage.isInitiated()) {
-		$('#store_passwd').style.display = 'block';
-	} else {
-		$('#login').style.display = 'block';
-	}
-})
+var gui = require('nw.gui');
+var win = gui.Window.get();
+var tray;
+
+// Get the minimize event
+win.on('minimize', function() {
+	this.hide();
+	tray = new gui.Tray({icon: 'img/icon_256.png'});
+
+	tray.on('click', function() {
+		win.show();
+		this.remove();
+		tray = null;
+	});
+});
 
 window.addEventListener('keydown', function(e) {
 	if(e.keyCode == 123) { // F12
@@ -18,10 +27,16 @@ var storage = {
 	isInitiated: function(){ return typeof localStorage.pass != "undefined" },
 	logged: function(){ return typeof sessionStorage.pass != "undefined" },
 	logout: function(){
+		var accs = storage.accounts.get();
+		for(var i in accs) {
+			ui.accLogout(i);
+		}
+
 		sessionStorage.pass = '';
 		delete sessionStorage.pass;
 		$("#add_account").reset();
-		show("login");
+		ui.r.set('loggedIn', !1);
+		ui.r.set('accounts', []);
 	},
 	init: function() {
 		if(storage.isInitiated()) {
@@ -48,8 +63,9 @@ var storage = {
 		$('#epwd_rep').value = "";
 
 		// mostrar cuentas
-		ui.initAcc();
-		show("accounts");
+		ui.reloadAccounts();
+		ui.r.set('initiated', !0);
+		ui.r.set('loggedIn', !0);
 	},
 	login: function() {
 		var pass = $('#login_pass').value;
@@ -60,23 +76,23 @@ var storage = {
 		} else {
 			sessionStorage.pass = pass;
 			$('#login_pass').value = "";
-			ui.initAcc();
-			show("accounts");
+			ui.reloadAccounts();
+			ui.r.set('loggedIn', !0);
 		}
 	},
 	reset: function() {
 		delete localStorage.pass;
 		delete localStorage.accounts;
 
-		ui.initAcc();
+		ui.reloadAccounts();
+		ui.r.set('initiated', !1);
+		ui.r.set('loggedIn', !1);
+		ui.r.set('accounts', []);
 	},
 	askReset: function() {
-		if(!confirm("¿Realmente desea reiniciar todo? Se borrará cualquier cuenta guardada.")) {
-			return;
+		if(confirm("¿Realmente desea reiniciar todo? Se borrará cualquier cuenta guardada.")) {
+			storage.reset();
 		}
-
-		storage.reset();
-		show("store_passwd");
 	},
 	accounts: {
 		getIndex: function(bankId, user) {
@@ -98,7 +114,7 @@ var storage = {
 			return storage.accounts.getIndex(bankId, user) != -1;
 		},
 		add: function(bankId, user, pass) {
-			if(!banks.hasOwnProperty(bankId)) {
+			if(!ui.getBank(bankId) == null) {
 				alert("Ese banco no existe"); return;
 			}
 
@@ -154,36 +170,22 @@ var storage = {
 }
 
 var ui = {
-	reloadAcc: function() {
+	reloadAccounts: function(){
 		if(!storage.isInitiated()) {
 			return;
 		}
-
-		var accCont = $('#accounts table tbody');
-		accCont.innerHTML = '';
-
 		var accs = storage.accounts.get();
+		ui.r.set('accounts', []);
+
 		for(var i = 0; i < accs.length; i++) {
-			var bank = ui.getBank(accs[i][0]);
-			if(bank == null) {
-				continue;
-			}
-
-			accCont.innerHTML += "<td>" + bank.name +"</td><td>" + accs[i][1] + "</td><td><a href='javascript:ui.delAcc(" + i + ");'>borrar</a></td>";
+			ui.r.push('accounts', {
+				bankName: ui.getBank(accs[i][0]).name,
+				user: accs[i][1],
+				logged: false,
+				mod: null,
+				bAcc: []
+			});
 		}
-	},
-	initAcc: function(){
-		var addAccForm = $('#add_account');
-			addAccSelect = $('#add_account select');
-		addAccSelect.innerHTML = '<option value="">Seleccione...</option>';
-		for(var bank in banks) {
-			if(!banks.hasOwnProperty(bank)) {
-				return;
-			}
-
-			addAccSelect.innerHTML += "<option value='" + bank + "'>" + banks[bank].name + "</option>";
-		}
-		ui.reloadAcc();
 	},
 	addAcc: function() {
 		var vbank = $('#new_bank').value;
@@ -205,7 +207,8 @@ var ui = {
 		}
 
 		storage.accounts.add(vbank, user, pass);
-		ui.reloadAcc();
+		$('#add_account').reset();
+		ui.reloadAccounts();
 	},
 	delAcc: function(idx) {
 		if(!confirm("¿Realmente desea eliminar esta cuenta?")) {
@@ -215,13 +218,127 @@ var ui = {
 		var acc = storage.accounts.get(idx);
 		storage.accounts.remove(acc[0], acc[1]);
 
-		ui.reloadAcc();
+		ui.reloadAccounts();
 	},
 	getBank: function(bankId) {
-		if(!banks.hasOwnProperty(bankId)) {
-			return null;
+		var r = banks.filter(function(o){ return o.id == bankId });
+		return r.length > 0 ? r[0] : null;
+	},
+	getAcc: function(bankId, user) {
+		var accs = ui.r.get('accounts');
+		for(var i = 0; i < accs.length; i++) {
+			if(accs[i].bankName == ui.getBank(bankId).name && accs[i].user == user) {
+				accs[i].index = i;
+				return accs[i];
+			}
 		}
 
-		return banks[bankId];
-	}
+		return null;
+	},
+	accLogin: function(idx) {
+		var acc = storage.accounts.get(idx);
+		if(typeof acc == "undefined" || acc == null) {
+			return;
+		}
+
+		var r = ui.getAcc(acc[0], acc[1]);
+		if(r.mod != null) {
+			return;
+		}
+
+		var bank = ui.getBank(acc[0]);
+		var l = new bank.module(acc[1], acc[2]);
+		ui.r.set('accounts.'+r.index+'.mod', l);
+		l.login(function(err, success) {
+			if(err != null || !success) {
+				alert('Error al iniciar sesión! ' + err.message); return;
+			}
+			ui.r.set('accounts.'+r.index+'.logged', !0);
+
+			console.log("Iniciando monitor...");
+			ui.accMonitor(idx);
+		});
+	},
+	accLogout: function(idx) {
+		var acc = storage.accounts.get(idx);
+		if(typeof acc == "undefined" || acc == null) {
+			return;
+		}
+
+		var r = ui.getAcc(acc[0], acc[1]);
+		if(r == null) {
+			return;
+		}
+
+		var t = ui.r.get('accounts.'+r.index+'.to');
+		if(typeof t != "undefined") clearTimeout(t);
+
+		ui.r.set('accounts.'+r.index+'.mod', null);
+		ui.r.set('accounts.'+r.index+'.logged', false);
+		ui.r.set('accounts.'+r.index+'.bAcc', []);
+		ui.r.set('accounts.'+r.index+'.pAcc', undefined);
+	},
+	accMonitor: function(idx) {
+		var acc = storage.accounts.get(idx);
+		if(typeof acc == "undefined" || acc == null) {
+			return;
+		}
+
+		var r = ui.getAcc(acc[0], acc[1]);
+		if(r.mod == null) {
+			return;
+		}
+
+		var bank = ui.getBank(acc[0]);
+		var l = ui.r.get('accounts.'+r.index+'.mod');
+
+		l.getAccounts(function(err, accs){
+			if(err != null) { return; }
+
+			if(accs.length > 0) {
+				if(typeof ui.r.get('accounts.'+r.index+'.pAcc') == "undefined") {
+					console.log('Monitor inicializado!');
+
+					ui.r.set('accounts.'+r.index+'.bAcc', accs);
+					ui.r.set('accounts.'+r.index+'.pAcc', accs);
+
+					var notifTxt = "";
+					accs.forEach(function(acc) {
+						notifTxt += acc.accType + "(" + acc.accNumber + ") $" + acc.accBal + "\n";
+					});
+
+					showNotification({title: 'Datos iniciales de cuenta ' + bank.name, text: notifTxt});
+				} else {
+					var prev = ui.r.get('accounts.'+r.index+'.bAcc', accs);
+					for(var i = 0; i < accs.length; i++) {
+						for(var j = 0; j < prev.length; j++) {
+							if(accs[i].accNumber == prev[j].accNumber && accs[i].accBal != prev[j].accBal) {
+								// Dif saldo: parseInt(accs[i].accBal) - parseInt(prev[j].accBal);
+								var notifTxt = 'Delta: $' + (parseInt(accs[i].accBal) - parseInt(prev[j].accBal)) + "\nNuevo saldo: $" + accs[i].accBal;
+								showNotification({title: 'Nuevo saldo de cuenta ' + bank.name, text: notifTxt});
+							}
+						}
+					}
+
+					ui.r.set('accounts.'+r.index+'.bAcc', accs);
+					ui.r.set('accounts.'+r.index+'.pAcc', prev);
+				}
+			} else {
+				console.log('No se encontraron cuentas!');
+			}
+
+			var it = setTimeout(function(){ui.accMonitor(idx)}, 20000);
+			ui.r.set('accounts.'+r.index+'.to', accs);
+		});
+	},
+	r: new Ractive({
+		template: '#main_template',
+		el: '#main_container',
+		data: {
+			initiated: storage.isInitiated(),
+			loggedIn: false,
+			accounts: [], // { bankName: str, user: str, logged: bool, mod: obj, bAcc: [] }
+			banks: banks
+		}
+	})
 }

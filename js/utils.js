@@ -6,34 +6,6 @@ cheerio = require('cheerio');
 var d = document, w = window;
 var q = function(e){return d.querySelector(e)};
 
-Element.prototype.remove = function() {
-	if(typeof this.parentElement != "undefined")
-		this.parentElement.removeChild(this);
-}
-
-Object.prototype.serialize = function() {
-	var s = [];
-	for(var param in this) {
-		if(this.hasOwnProperty(param)) {
-			s.push(param + "=" + encodeURIComponent(this[param]));
-		}
-	}
-
-	return s.join('&');
-}
-
-Object.prototype.extend = function(other) {
-	for (var i = 0; i < arguments.length; i++) {
-		if (!arguments[i]) continue;
-
-		for (var key in arguments[i]) {
-			if (arguments[i].hasOwnProperty(key)) {
-				this[key] = arguments[i][key];
-			}
-		}
-	}
-}
-
 function encrypt(str, pass) {
 	pass = pass || sessionStorage.pass || '';
 	return CryptoJS.TripleDES.encrypt(str, pass).toString();
@@ -112,7 +84,7 @@ function showNotification(options) {
 		onClose: function(){}
 	};
 
-	options.extend(defaults);
+	defaults.extend(options);
 
 	var notification = new Notification(options.title, {body: options.text});
 
