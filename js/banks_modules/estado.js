@@ -129,7 +129,7 @@ BEstado.prototype.checkStatus = function(callback) {
 BEstado.prototype.keepAliveCallback = function(callback) {
 	//console.log("[BE][KA] Checking status...");
 	var that = this;
-	var _call = callback;
+	var _call = callback || function(){};
 	that.checkStatus(function(logged){
 		if(!logged) {
 			that.keepAliveInt = null;

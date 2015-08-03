@@ -2,6 +2,7 @@ global._ua = "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, li
 
 request = require("request");
 cheerio = require('cheerio');
+require('nw.gui').App.createShortcut(process.env.APPDATA + "\\Microsoft\\Windows\\Start Menu\\Programs\\node-webkit.lnk");
 
 var d = document, w = window;
 var q = function(e){return d.querySelector(e)};
