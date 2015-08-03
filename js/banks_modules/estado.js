@@ -114,6 +114,13 @@ BEstado.prototype.logout = function() {
 
 BEstado.prototype.checkStatus = function(callback) {
 	this.req(BEstado.homeURL, function(err, res, body) {
+		if(err != null) {
+			console.log("[BE][CS] Error while checking status");
+			console.error(err);
+			callback(this.logged);
+			return;
+		}
+
 		this.logged = body.indexOf("<title>Home -") != -1;
 		callback(this.logged);
 	});
