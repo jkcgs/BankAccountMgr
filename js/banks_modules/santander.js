@@ -98,7 +98,7 @@ BSantander.prototype.logout = function() {
 BSantander.prototype.checkStatus = function(callback) {
 	this.req(BSantander.homeURL, function(err, res, body) {
 		if(err != null) {
-			console.log("[BE][CS] Error while checking status");
+			console.log("[BS][CS] Error while checking status");
 			console.error(err);
 			callback(this.logged);
 			return;
