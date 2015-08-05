@@ -291,9 +291,15 @@ var ui = {
 
 		var bank = ui.getBank(acc[0]);
 		var l = ui.r.get('accounts.'+r.index+'.mod');
+		var _idx = idx;
 
 		l.getAccounts(function(err, accs){
-			if(err != null) { return; }
+			if(err != null) {
+				alert('Se ha detectado un error con una cuenta, se cerrará la sesión de ésta!');
+				console.log(err);
+				ui.accLogout(idx);
+				return;
+			}
 
 			if(accs.length > 0) {
 				if(typeof ui.r.get('accounts.'+r.index+'.pAcc') == "undefined") {
@@ -327,7 +333,7 @@ var ui = {
 				console.log('No se encontraron cuentas!');
 			}
 
-			var it = setTimeout(function(){ui.accMonitor(idx)}, 20000);
+			var it = setTimeout(function(){ui.accMonitor(idx)}, 15000);
 			ui.r.set('accounts.'+r.index+'.to', accs);
 		});
 	},

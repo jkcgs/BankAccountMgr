@@ -54,7 +54,6 @@ BSantander.prototype.login = function(callback) {
 		that.logged = true;
 		that.username = "[user]";
 
-		that.startKeepAlive();
 		_callback(null, true);
 	});
 };

@@ -68,7 +68,6 @@ BEstado.prototype.login = function(callback) {
 			var $ = cheerio.load(body);
 			that.username = $('.tituloNombre').text().trim();
 
-			that.startKeepAlive();
 			_callback(null, true);
 		});
 	});
