@@ -114,9 +114,7 @@ BEstado.prototype.logout = function() {
 BEstado.prototype.checkStatus = function(callback) {
 	this.req(BEstado.homeURL, function(err, res, body) {
 		if(err != null) {
-			console.log("[BE][CS] Error while checking status");
-			console.error(err);
-			callback(this.logged);
+			callback(err, this.logged);
 			return;
 		}
 
@@ -126,14 +124,16 @@ BEstado.prototype.checkStatus = function(callback) {
 }
 
 BEstado.prototype.keepAliveCallback = function(callback) {
-	//console.log("[BE][KA] Checking status...");
 	var that = this;
 	var _call = callback || function(){};
-	that.checkStatus(function(logged){
+	that.checkStatus(function(err, logged){
+		if(err != null) {
+			_call(err);
+		}
 		if(!logged) {
 			that.keepAliveInt = null;
 			console.log("[BE][KA] Session got closed!");
-			_call(that);
+			_call(new Error('Session closed'));
 			return;
 		}
 
@@ -142,10 +142,11 @@ BEstado.prototype.keepAliveCallback = function(callback) {
 	});
 }
 
-BEstado.prototype.startKeepAlive = function() {
+BEstado.prototype.startKeepAlive = function(callback) {
 	if(this.keepAliveInt != null) return;
+	var _call = callback || function(){};
 
-	this.keepAliveCallback();
+	this.keepAliveCallback(_call);
 }
 
 module.exports = BEstado;

@@ -184,30 +184,33 @@ BancoCL.prototype.checkStatus = function(callback) {
 	});
 }
 
-BancoCL.prototype.keepAliveCallback = function() {
-	//console.log("[BE][KA] Checking status...");
+BancoCL.prototype.keepAliveCallback = function(callback) {
+	var _calll = callback || function(){};
 	var that = this;
 	that.checkStatus(function(err, logged){
 		if(err != null) {
 			console.log("[BCL][KA] Error received! " + err.message);
+			_call(err);
 			return;
 		}
 
 		if(!logged) {
 			that.keepAliveInt = null;
 			console.log("[BCL][KA] Session got closed!");
+			_call(new Error('Session closed'));
 			return;
 		}
 
 		//console.log("[BE][KA] Session OK");
-		that.keepAliveInt = setTimeout(function(){ that.keepAliveCallback(); }, 20000);
+		that.keepAliveInt = setTimeout(function(){ that.keepAliveCallback(); }, 30000);
 	});
 }
 
-BancoCL.prototype.startKeepAlive = function() {
+BancoCL.prototype.startKeepAlive = function(callback) {
 	if(this.keepAliveInt != null) return;
+	var _call = callback || function(){};
 
-	this.keepAliveCallback();
+	this.keepAliveCallback(_call);
 }
 
 module.exports = BancoCL;

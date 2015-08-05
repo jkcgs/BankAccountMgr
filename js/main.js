@@ -248,6 +248,7 @@ var ui = {
 
 		var bank = ui.getBank(acc[0]);
 		var l = new bank.module(acc[1], acc[2]);
+		var _idx = idx;
 		ui.r.set('accounts.'+r.index+'.mod', l);
 		l.login(function(err, success) {
 			if(err != null || !success) {
@@ -255,7 +256,7 @@ var ui = {
 			}
 			ui.r.set('accounts.'+r.index+'.logged', !0);
 
-			console.log("Iniciando monitor...");
+			console.log('['+_idx+'] Iniciando monitor...');
 			ui.accMonitor(idx);
 		});
 	},
@@ -293,6 +294,13 @@ var ui = {
 		var l = ui.r.get('accounts.'+r.index+'.mod');
 		var _idx = idx;
 
+		console.log('['+_idx+'] Iniciando KeepAlive...');
+		l.startKeepAlive(function(err) {
+			alert('Se ha detectado un error con una cuenta, se cerrará la sesión de ésta!');
+			ui.accLogout(_idx);
+			console.log(err);
+		});
+
 		l.getAccounts(function(err, accs){
 			if(err != null) {
 				alert('Se ha detectado un error con una cuenta, se cerrará la sesión de ésta!');
@@ -301,9 +309,11 @@ var ui = {
 				return;
 			}
 
+			if(!l.logged) { return; }
+
 			if(accs.length > 0) {
 				if(typeof ui.r.get('accounts.'+r.index+'.pAcc') == "undefined") {
-					console.log('Monitor inicializado!');
+					console.log('['+_idx+'] Monitor inicializado!');
 
 					ui.r.set('accounts.'+r.index+'.bAcc', accs);
 					ui.r.set('accounts.'+r.index+'.pAcc', accs);
@@ -330,7 +340,7 @@ var ui = {
 					ui.r.set('accounts.'+r.index+'.pAcc', prev);
 				}
 			} else {
-				console.log('No se encontraron cuentas!');
+				console.log('['+_idx+'] No se encontraron cuentas!');
 			}
 
 			var it = setTimeout(function(){ui.accMonitor(idx)}, 15000);

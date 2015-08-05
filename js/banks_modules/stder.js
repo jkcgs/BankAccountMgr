@@ -2,7 +2,7 @@ var utils = require("../utils_mod.js");
 var cheerio = require("cheerio");
 var request = require("request");
 
-BSantander = function(user, pass) {
+BStder = function(user, pass) {
 	this.user = user;
 	this.pass = pass.replace(/\.\-/g, '');
 	this.jar = request.jar();
@@ -14,20 +14,20 @@ BSantander = function(user, pass) {
 	this.logged = false;
 };
 
-BSantander.bname = "Banco Santander";
-BSantander.userIsRUT = true;
+BStder.bname = "Banco Santander";
+BStder.userIsRUT = true;
 
-BSantander.prefixDomain = "https://www.santander.cl";
-BSantander.formURL = BSantander.prefixDomain + "/transa/cruce.asp";
-BSantander.transfAccs = BSantander.prefixDomain + '/transa/productos/tt/mis_productos/miscuentas_inicio-v2.asp';
-BSantander.homeURL = BSantander.prefixDomain + '/transa/segmentos/Menu/view.asp';
+BStder.prefixDomain = "https://www.santander.cl";
+BStder.formURL = BStder.prefixDomain + "/transa/cruce.asp";
+BStder.transfAccs = BStder.prefixDomain + '/transa/productos/tt/mis_productos/miscuentas_inicio-v2.asp';
+BStder.homeURL = BStder.prefixDomain + '/transa/segmentos/Menu/view.asp';
 
-BSantander.prototype.login = function(callback) {
+BStder.prototype.login = function(callback) {
 	console.log("[BS] Logging in...");
 	var that = this;
 	var _callback = callback || function(){};
 	var opts = {
-		url: BSantander.formURL,
+		url: BStder.formURL,
 		form: {
 			rut: this.user,
 			pin: this.pass
@@ -58,7 +58,7 @@ BSantander.prototype.login = function(callback) {
 	});
 };
 
-BSantander.prototype.getAccounts = function(callback) {
+BStder.prototype.getAccounts = function(callback) {
 	if(!this.logged) {
 		console.error("[BS][GA] Not logged!");
 		callback(new Error("Not logged"));
@@ -67,7 +67,7 @@ BSantander.prototype.getAccounts = function(callback) {
 	var _callback = callback || function(){};
 
 	//console.log("[BS][GA] Loading resume");
-	return this.req(BSantander.transfAccs, function(err, res, body) {
+	return this.req(BStder.transfAccs, function(err, res, body) {
 		if(err != null) {
 			_callback(err); return;
 		}
@@ -88,35 +88,36 @@ BSantander.prototype.getAccounts = function(callback) {
 	});
 }
 
-BSantander.prototype.logout = function() {
+BStder.prototype.logout = function() {
 	this.jar = request.jar();
 }
 
 ///////////////////////////////////////////////////////////
 
-BSantander.prototype.checkStatus = function(callback) {
-	this.req(BSantander.homeURL, function(err, res, body) {
+BStder.prototype.checkStatus = function(callback) {
+	this.req(BStder.homeURL, function(err, res, body) {
 		if(err != null) {
-			console.log("[BS][CS] Error while checking status");
-			console.error(err);
-			callback(this.logged);
+			callback(err);
 			return;
 		}
 
 		this.logged = body.indexOf("actualiza_area_trabajo") != -1;
-		callback(this.logged);
+		callback(null, this.logged);
 	});
 }
 
-BSantander.prototype.keepAliveCallback = function(callback) {
-	//console.log("[BE][KA] Checking status...");
+BStder.prototype.keepAliveCallback = function(callback) {
 	var that = this;
 	var _call = callback || function(){};
-	that.checkStatus(function(logged){
+	that.checkStatus(function(err, logged){
+		if(err != null) {
+			_call(err);
+		}
+
 		if(!logged) {
 			that.keepAliveInt = null;
 			console.log("[BS][KA] Session got closed!");
-			_call(that);
+			_call(new Error('Session closed'));
 			return;
 		}
 
@@ -125,10 +126,11 @@ BSantander.prototype.keepAliveCallback = function(callback) {
 	});
 }
 
-BSantander.prototype.startKeepAlive = function() {
+BStder.prototype.startKeepAlive = function(callback) {
 	if(this.keepAliveInt != null) return;
+	var _call = callback || function(){};
 
-	this.keepAliveCallback();
+	this.keepAliveCallback(_call);
 }
 
-module.exports = BSantander;
+module.exports = BStder;
