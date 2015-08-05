@@ -1,12 +1,11 @@
-var utils = require("../utils_mod.js");
-var cheerio = require("cheerio");
 var request = require("request");
+var utils = require("../utils_mod.js");
 
-BChile = function(user, pass) {
+BancoCL = function(user, pass) {
 	this.user = user;
 	this.pass = pass;
 	this.jar = request.jar();
-	this.req = require("request").defaults({ jar:this.jar, followAllRedirects:true, headers:{"user-agent": utils._ua} });
+	this.req = request.defaults({ jar:this.jar, followAllRedirects:true, headers:{"user-agent": _ua} });
 
 	this.keepAliveInt = null;
 
@@ -14,127 +13,201 @@ BChile = function(user, pass) {
 	this.logged = false;
 };
 
-BChile.bname = "Banco de Chile/Edwards/CrediChile";
-BChile.userIsRUT = true;
+BancoCL.bname = "B. Chile/Edwards/CrediChile";
+BancoCL.userIsRUT = true;
 
-BChile.prefixDomain = "https://www.bancochile.cl";
-BChile.prefix = BChile.prefixDomain + "/bchile-perfilamiento/";
-BChile.formURL = BChile.prefix + "Process?AID=LOGIN-0004"
-BChile.formURL2 = "https://www.bancochile.cl/bchile-perfilamiento/Process?AID=LOGIN-0004"
-// a = new banks.chile.module("", ""); a.login();
+BancoCL.prefixDomain = "https://www.bancochile.cl";
+BancoCL.prefix = BancoCL.prefixDomain + "/bchile-perfilamiento/Process?";
+BancoCL.prefixAjax = BancoCL.prefixDomain + "/bchile-perfilamiento/Ajax?";
+BancoCL.loginURL = BancoCL.prefix + "MID=&AID=LOGIN-0005";
+BancoCL.validaClave = BancoCL.prefix + "AID=VALIDA_CLAVE-0000";
+BancoCL.uInfoURL = BancoCL.prefix + "MID=&AID=CARTOLA_CON_SALDOS-0200";
+BancoCL.ajaxSaldo = BancoCL.prefix + "AID=AJAX_OBTENER_SALDOS1&indice=";
+BancoCL.checkSession = BancoCL.prefix + "AID=ESTADO_SESION-010";
 
-BChile.prototype.login = function(callback) {
-	console.log("[BC] Retrieving login page... " + BChile.formURL);
+BancoCL.prototype.login = function(callback) {
 	var that = this;
-	_callback = callback || function(){};
-	this.req(BChile.formURL2, function(err, res, body) {
+	var _callback = callback || function(){};
+
+	console.log("[BCL] Checking login data... ");
+	that.validatePass(function(loginCheck, err){
+		if(!loginCheck) {
+			_callback(err);
+			return;
+		}
+
+		var opts = {
+			url: BancoCL.loginURL,
+			form: {
+				rutFull: utils.formatRUT(that.user),
+				SignonPswd: that.pass
+			}
+		};
+
+		console.log("[BCL] Log-in... ");
+		that.req.post(opts, function(err, res, body){
+			if(err != null) {
+				_callback(err)
+				return;
+			}
+
+			if(res.request.href.indexOf("CARTOLACONTODO") == -1) {
+				_callback(new Error('No se pudo iniciar sesión.'));
+				return;
+			}
+
+			console.log("[BCL] Retrieving user name... ");
+			that.req(BancoCL.uInfoURL, function(err, res, body) {
+				if(err != null) {
+					_callback(err);
+					return;
+				}
+
+				that.logged = true;
+				that.username = utils.textFinder(body, "Sr(a). ", "<");
+				_callback(null, true);
+			});
+		});
+	});
+};
+
+BancoCL.prototype.getAccounts = function(callback) {
+	var _call = callback || function(){};
+	var that = this;
+	if(!this.logged) {
+		console.error("[BCL][GA] Not logged!");
+		_call(new Error("Not logged"));
+		return;
+	}
+
+	this.req(BancoCL.uInfoURL, function(err, res, body) {
+		if(res.request.href.indexOf("CARTOLA_CON_SALDOS") == -1) {
+			console.log("[BCL][GA] Wrong page received");
+			_call(new Error("Wrong page received"));
+			return;
+		}
+
+		var accs = [];
+		var r = (new RegExp('mtoDisp[0-9]*', 'g')).exec(body);
+		for(var i = 0, c = 0; i < r.length; i++) {
+			that.req(BancoCL.ajaxSaldo + i, function(err, res, data){
+				if(data.indexOf('<') != -1) {
+					_call(new Error('Contenido incorrecto recibido'));
+					return;
+				}
+
+				try {
+					var d = data.replace(/'/g, '"')
+						.replace("nroProducto", "accNumber")
+						.replace("montoContable", "accBal")
+						.replace("codProducto", "accType");
+					d = JSON.parse(d);
+					delete d[0].montoDisponible;
+					accs.push(d[0]);
+				} catch(e) {
+					console.log('[BCL][GA] Error al decodificar JSON');
+					showData(data);
+					_call(e);
+				}
+
+				if(++c == r.length) {
+					_call(null, accs);
+				}
+			});
+		}
+	});
+}
+
+
+///////////////////////////////////////////////////////////
+
+BancoCL.prototype.validatePass = function(callback) {
+	callback = callback || function(){};
+	if(this.pass == "") {
+		callback(false, null);
+	}
+
+	var that = this;
+	var opts = {
+		form: {
+			CustLoginID: utils.formatRUT(that.user),
+			SignonPswd: that.pass
+		}
+	};
+
+	this.req.post(BancoCL.validaClave, opts, function(err, res, body) {
 		if(err != null) {
+			log("check error");
 			console.log(err);
 			return;
 		}
 
-		if(body.indexOf("Ingreso a Banco") == -1) {
-			console.log("[BC] Wrong page received");
+		var code = false;
+		try {
+			var x = JSON.parse(body.replace(/'/g, '"'));
+			var code = x[0].compara_sesion;
+		} catch(e) {
 			console.log(body);
-			_callback(false, new Error("Wrong page received"));
+			callback(false, e);
 			return;
 		}
 
-		console.log("[BC] Login page loaded");
-		var formSubmitURL = BChile.prefixDomain + utils.textFinder(body, 'myformLogin1" action="', '"').replace(/&amp;/g, "&");
+		switch(code) {
+			case "00":
+				callback(true, null);
+			break;
+			case "01":
+			case "02":
+			case "04":
+				callback(false, new Error("Contraseña incorrecta"));
+			break;
+			case "05":
+				callback(false, new Error("Contraseña bloqueada"));
+			break;
+			default:
+				callback(false, new Error("Error desconocido"));
+		}
+	})
+}
 
-		console.log("[BC] Form Action URL: " + formSubmitURL);
-
-		var opts = {
-			form: {
-				CustLoginID: utils.formatRUT(that.user, !1),
-				SignonPswd: that.pass,
-				relogin: "0",
-				marca: "",
-				segmento: ",",
-				pagina: "login"
-			}
-		};
-
-		console.log("[BC] Log-in...");
-		that.req.post(formSubmitURL, opts, function(err, res, body) {
-			if(err != null) {
-				console.log(err);
-				return;
-			}
-
-			if(body.indexOf("?AID=CARTOLACONTODO-0000") == -1) {
-				console.log("[BC] Login unsuccessful");
-				console.log(body);
-				_callback(false, null); return;
-			}
-
-			console.log("[BC] Logged in successful");
-			_callback(true, null);
-		}).on('error', function(e){ _callback(false, e); });
-	}).on('error', function(e){ _callback(false, e); });
-};
-
-BChile.prototype.getAccounts = function(callback) {
-	if(!this.logged) {
-		console.error("[BE][GA] Not logged!");
-		callback(false, new Error("Not logged"));
-		return;
-	}
-
-	this.req(BChile.resumenURL, function(err, res, body) {
-		if(body.indexOf("<title>Resumen de Productos") == -1) {
-			console.log("[BE][GA] Wrong page received");
-			callback(false, new Error("Wrong page received"));
+BancoCL.prototype.checkStatus = function(callback) {
+	var _call = callback || function(){};
+	var that = this;
+	this.req(BancoCL.checkSession, function(err, res, body) {
+		if(err != null) {
+			_call(err);
 			return;
 		}
 
-		var accounts = [];
-		var $1 = cheerio.load(body);
-		var els = $1("#table_1 tbody tr");
-		for(var i = 0; i < els.length; i++) {
-			var tds = $1("td", els[i]),
-				accType = tds.eq(0).text().trim(),
-				accNum = tds.eq(1).text().trim(),
-				accBal = tds.eq(3).text().replace(/[^0-9]/g, "");
-
-			accounts.push({accNumber:accNum, accType: accType, accBal: accBal})
-		}
-
-		callback(accounts, null);
+		that.logged = body.trim() == "00";
+		_call(null, that.logged);
 	});
 }
 
-///////////////////////////////////////////////////////////
-
-BChile.prototype.checkStatus = function(callback) {
-	this.req(BChile.homeURL, function(err, res, body) {
-		this.logged = body.indexOf("<title>Home -") != -1;
-		callback(this.logged);
-	});
-}
-
-BChile.prototype.keepAliveCallback = function(callback) {
+BancoCL.prototype.keepAliveCallback = function() {
 	//console.log("[BE][KA] Checking status...");
 	var that = this;
-	var _call = callback;
-	that.checkStatus(function(logged){
+	that.checkStatus(function(err, logged){
+		if(err != null) {
+			console.log("[BCL][KA] Error received! " + err.message);
+			return;
+		}
+
 		if(!logged) {
 			that.keepAliveInt = null;
-			console.log("[BE][KA] Session got closed!");
-			_call(that);
+			console.log("[BCL][KA] Session got closed!");
 			return;
 		}
 
 		//console.log("[BE][KA] Session OK");
-		that.keepAliveInt = setTimeout(function(){ that.keepAliveCallback(); }, 30000);
+		that.keepAliveInt = setTimeout(function(){ that.keepAliveCallback(); }, 20000);
 	});
 }
 
-BChile.prototype.startKeepAlive = function() {
+BancoCL.prototype.startKeepAlive = function() {
 	if(this.keepAliveInt != null) return;
 
 	this.keepAliveCallback();
 }
 
-module.exports = BChile;
+module.exports = BancoCL;
