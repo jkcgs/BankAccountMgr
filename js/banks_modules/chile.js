@@ -184,8 +184,8 @@ BancoCL.prototype.checkStatus = function(callback) {
 	});
 }
 
-BancoCL.prototype.keepAliveCallback = function(callback) {
-	var _calll = callback || function(){};
+BancoCL.prototype.keepAlive = function(callback) {
+	var _call = callback || function(){};
 	var that = this;
 	that.checkStatus(function(err, logged){
 		if(err != null) {
@@ -201,16 +201,11 @@ BancoCL.prototype.keepAliveCallback = function(callback) {
 			return;
 		}
 
-		//console.log("[BE][KA] Session OK");
-		that.keepAliveInt = setTimeout(function(){ that.keepAliveCallback(); }, 30000);
+		if(that.keepAliveInt == null) {
+			console.log("[BCL][KA] KeepAlive iniciado");
+		}
+		that.keepAliveInt = setTimeout(function(){ that.keepAlive(_call); }, 30000);
 	});
-}
-
-BancoCL.prototype.startKeepAlive = function(callback) {
-	if(this.keepAliveInt != null) return;
-	var _call = callback || function(){};
-
-	this.keepAliveCallback(_call);
 }
 
 module.exports = BancoCL;

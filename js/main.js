@@ -207,8 +207,14 @@ var ui = {
 		}
 
 		storage.accounts.add(vbank, user, pass);
+		ui.r.push('accounts', {
+			bankName: ui.getBank(vbank).name,
+			user: user,
+			logged: false,
+			mod: null,
+			bAcc: []
+		});
 		$('#add_account').reset();
-		ui.reloadAccounts();
 	},
 	delAcc: function(idx) {
 		if(!confirm("¿Realmente desea eliminar esta cuenta?")) {
@@ -294,8 +300,7 @@ var ui = {
 		var l = ui.r.get('accounts.'+r.index+'.mod');
 		var _idx = idx;
 
-		console.log('['+_idx+'] Iniciando KeepAlive...');
-		l.startKeepAlive(function(err) {
+		l.keepAlive(function(err) {
 			alert('Se ha detectado un error con una cuenta, se cerrará la sesión de ésta!');
 			ui.accLogout(_idx);
 			console.log(err);

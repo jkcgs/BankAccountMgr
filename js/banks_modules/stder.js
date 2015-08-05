@@ -95,22 +95,25 @@ BStder.prototype.logout = function() {
 ///////////////////////////////////////////////////////////
 
 BStder.prototype.checkStatus = function(callback) {
+	var _call = callback || function(){};
+	var that = this;
 	this.req(BStder.homeURL, function(err, res, body) {
 		if(err != null) {
-			callback(err);
+			_call(err);
 			return;
 		}
 
-		this.logged = body.indexOf("actualiza_area_trabajo") != -1;
-		callback(null, this.logged);
+		that.logged = body.indexOf("actualiza_area_trabajo") != -1;
+		_call(null, that.logged);
 	});
 }
 
-BStder.prototype.keepAliveCallback = function(callback) {
+BStder.prototype.keepAlive = function(callback) {
 	var that = this;
 	var _call = callback || function(){};
 	that.checkStatus(function(err, logged){
 		if(err != null) {
+			console.log("[BS][KA] Error received! " + err.message);
 			_call(err);
 		}
 
@@ -121,16 +124,11 @@ BStder.prototype.keepAliveCallback = function(callback) {
 			return;
 		}
 
-		//console.log("[BE][KA] Session OK");
-		that.keepAliveInt = setTimeout(function(){ that.keepAliveCallback(); }, 30000);
+		if(that.keepAliveInt == null) {
+			console.log("[BS][KA] KeepAlive iniciado");
+		}
+		that.keepAliveInt = setTimeout(function(){ that.keepAlive(_call); }, 30000);
 	});
-}
-
-BStder.prototype.startKeepAlive = function(callback) {
-	if(this.keepAliveInt != null) return;
-	var _call = callback || function(){};
-
-	this.keepAliveCallback(_call);
 }
 
 module.exports = BStder;

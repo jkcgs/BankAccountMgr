@@ -112,22 +112,25 @@ BEstado.prototype.logout = function() {
 ///////////////////////////////////////////////////////////
 
 BEstado.prototype.checkStatus = function(callback) {
+	var _call = callback || function(){};
+	var that = this;
 	this.req(BEstado.homeURL, function(err, res, body) {
 		if(err != null) {
-			callback(err, this.logged);
+			_call(err);
 			return;
 		}
 
-		this.logged = body.indexOf("<title>Home -") != -1;
-		callback(this.logged);
+		that.logged = body.indexOf("<title>Home -") != -1;
+		_call(null, that.logged);
 	});
 }
 
-BEstado.prototype.keepAliveCallback = function(callback) {
+BEstado.prototype.keepAlive = function(callback) {
 	var that = this;
 	var _call = callback || function(){};
 	that.checkStatus(function(err, logged){
 		if(err != null) {
+			console.log("[BE][KA] Error received! " + err.message);
 			_call(err);
 		}
 		if(!logged) {
@@ -137,16 +140,11 @@ BEstado.prototype.keepAliveCallback = function(callback) {
 			return;
 		}
 
-		//console.log("[BE][KA] Session OK");
-		that.keepAliveInt = setTimeout(function(){ that.keepAliveCallback(); }, 30000);
+		if(that.keepAliveInt == null) {
+			console.log("[BE][KA] KeepAlive iniciado");
+		}
+		that.keepAliveInt = setTimeout(function(){ that.keepAlive(_call); }, 30000);
 	});
-}
-
-BEstado.prototype.startKeepAlive = function(callback) {
-	if(this.keepAliveInt != null) return;
-	var _call = callback || function(){};
-
-	this.keepAliveCallback(_call);
 }
 
 module.exports = BEstado;

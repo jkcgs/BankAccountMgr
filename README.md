@@ -18,7 +18,7 @@ Cada módulo debe contar con las siguientes carácterísticas
  - `login(function callback(obj err, bool logged){})`
  - `getAccounts(function callback(obj err, array cuentas (1)))`
  - `checkStatus(function callback(obj err, bool loggedIn))`
- - `startKeepAlive(function callback(obj err (2)))`
+ - `keepAlive(function callback(obj err (2)))`
 
 (1): El arreglo `cuentas` debe tener el siguiente formato:
 ```js
@@ -30,7 +30,7 @@ Cada módulo debe contar con las siguientes carácterísticas
 	}
 ]
 ```
-(2): La función startKeepAlive es una función que ejecuta el callback si
+(2): La función keepAlive es una función que ejecuta el callback si
 no se ha podido mantener la sesión abierta. Por ende, el esta función debería
 existir como una función que revise el estado de la sesión cada cierto tiempo.
 Revisar los módulos existentes para mayor info y ejemplos.
