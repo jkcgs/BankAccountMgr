@@ -12,14 +12,14 @@ Cada módulo debe contar con las siguientes carácterísticas
 
 * Constructor: function(user, pass)
 * Constantes de la clase:
- - BancoCL.bname (string): el nombre del banco
- - BancoCL.userIsRUT (boolean): si el usuario es un RUT, para validarlo
+ - Modulo.bname (string): el nombre del banco
+ - Modulo.userIsRUT (boolean): si el usuario es un RUT, para validarlo
 * Funciones:
- - login(function callback(obj err, bool logged){})
- - getAccounts(function callback(obj err, array accs (1)))
- - checkStatus(function callback(obj err, bool loggedIn))
+ - `login(function callback(obj err, bool logged){})`
+ - `getAccounts(function callback(obj err, array cuentas (1)))`
+ - `checkStatus(function callback(obj err, bool loggedIn))`
 
-(1): El arreglo accs debe tener el siguiente formato:
+(1): El arreglo `cuentas` debe tener el siguiente formato:
 ```js
 [
 	{
@@ -29,5 +29,3 @@ Cada módulo debe contar con las siguientes carácterísticas
 	}
 ]
 ```
-
-Además, cada módulo deberá iniciar una
