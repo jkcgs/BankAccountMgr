@@ -1,12 +1,11 @@
-$ = function(s){ return document.querySelector(s); }
 Ractive.DEBUG = !1;
 
-var gui = require('nw.gui');
-var win = gui.Window.get();
-var tray;
+//var gui = require('nw.gui');
+//var win = gui.Window.get();
+//var tray;
 
 // Get the minimize event
-win.on('minimize', function() {
+/*win.on('minimize', function() {
 	this.hide();
 	tray = new gui.Tray({icon: 'img/icon_256.png'});
 
@@ -21,7 +20,7 @@ window.addEventListener('keydown', function(e) {
 	if(e.keyCode == 123) { // F12
 		require('nw.gui').Window.get().showDevTools();
 	}
-})
+})*/
 
 var storage = {
 	isInitiated: function(){ return typeof localStorage.pass != "undefined" },

@@ -91,7 +91,7 @@ module.exports = {
 		return text.substring(text_init, text_end);
 	},
 	showNotification: function(options) {
-		var defaults = {
+		/*var defaults = {
 			title: "Default notification title",
 			text: "Default notification text",
 			onClick: function(){},
@@ -105,7 +105,7 @@ module.exports = {
 
 		notification.onclick = options.onClick;
 		notification.onshow = options.onShow;
-		notification.onclose = options.onClose;
+		notification.onclose = options.onClose;*/
 	}
 }
 

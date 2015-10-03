@@ -1,12 +1,5 @@
 {
-    "name": "makzk-nw-bankmgr",
-    "main": "index.html",
-    "app-id": "com.makzk.nwjs.bankmgr",
-    "window": {
-        "toolbar": false,
-        "resizable": false,
-        "width": 800,
-        "height": 600,
-        "//show": false
-    }
+  "name"    : "makzk-nw-bankmgr",
+  "version" : "0.1.0",
+  "main"    : "launch.js"
 }
